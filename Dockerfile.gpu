@@ -1,0 +1,13 @@
+FROM python:3.9-slim-buster
+
+ENV CLASSLA_RESOURCES "./models/classla_resources"
+ENV CLS_MODEL_PATH "./models/sloberta_slokit_maxlen65_10e_lr2e-05/checkpoint-474/"
+ENV GEN_MODEL_PATH "./models/t5-sl-large-v4-maxlen128/checkpoint-936"
+
+COPY . .
+
+RUN pip install -r requirements-gpu.txt --extra-index-url https://download.pytorch.org/whl/cu113but
+
+EXPOSE 8000
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
