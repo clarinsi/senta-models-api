@@ -154,7 +154,10 @@ def df2json(nlp, sample_df, textbook, general):
         'simplified_percent_not_on_general': simplified_percent_not_on_general,
         'simplified_percent_not_on_textbook': simplified_percent_not_on_textbook,
         'simplified_general_words': simplified_general_words,
-        'simplified_textbook_words': simplified_textbook_words
+        'simplified_textbook_words': simplified_textbook_words,
+
+        'is_sentence_simplified': sample_df['is_simple_detected'].tolist(),
+        'is_sentence_simplified_num': int(sample_df['is_simple_detected'].sum())
     }
 
 
