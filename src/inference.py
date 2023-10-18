@@ -104,8 +104,8 @@ def add_stats(nlp, text, textbook, general):
                 textbook_words[word.text] = True if word.lemma in textbook else False
                 general_words[word.text] = True if word.lemma in general else False
 
-    percent_not_on_general = round((words_on_general / num_of_words) * 100, 2)
-    percent_not_on_textbook = round((words_on_textbook / num_of_words) * 100, 2)
+    percent_not_on_general = round((1 - (words_on_general / num_of_words)) * 100, 2)
+    percent_not_on_textbook = round((1 - (words_on_textbook / num_of_words)) * 100, 2)
 
     return (num_of_words,
             num_of_sentences,
