@@ -6,7 +6,7 @@ ENV GEN_MODEL_PATH "./models/t5-sl-large-v4-maxlen128/checkpoint-936"
 
 COPY . .
 
-RUN pip install -r requirements-gpu.txt --extra-index-url https://download.pytorch.org/whl/cu113but
+RUN pip install -r requirements-gpu.txt --extra-index-url https://download.pytorch.org/whl/cu113
 
 EXPOSE 8000
 
