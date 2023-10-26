@@ -6,6 +6,8 @@ ENV GEN_MODEL_PATH "./models/t5-sl-large-v4-maxlen128/checkpoint-936"
 
 COPY . .
 
+VOLUME ["/downloads"]
+
 RUN pip install -r requirements-cpu.txt --extra-index-url https://download.pytorch.org/whl/cu113
 
 EXPOSE 8000

@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, AutoModelForSequenceClassification
 
-from src.inference import prepare_sample, cls, gen, df2json, refresh_stats, get_long_words
+from src.inference import prepare_sample, cls, gen, df2json, refresh_stats, get_long_words, save_feedback
 
 
 class Simplify(BaseModel):
@@ -21,6 +21,11 @@ class RefreshStats(BaseModel):
 class LongWords(BaseModel):
     text: str
     length: int
+
+
+class Likes(BaseModel):
+    text: str
+    value: str
 
 
 app = FastAPI()
@@ -72,6 +77,11 @@ async def long_words(item: LongWords):
     json_output = get_long_words(nlp, item.text, item.length)
 
     return json_output
+
+
+@app.post("/likes/")
+async def save_likes(item: Likes):
+    save_feedback(item.text, item.value)
 
 
 if __name__ == "__main__":

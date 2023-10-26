@@ -1,3 +1,7 @@
+import json
+import uuid
+from datetime import datetime
+
 import pandas as pd
 import torch
 from tqdm import trange
@@ -192,3 +196,18 @@ def get_long_words(nlp, text, length):
             if len(word.text) > length:
                 long_words.append(word.text)
     return long_words
+
+
+def save_feedback(text, value):
+    json_data = {
+        "text": text,
+        "value": value
+    }
+
+    file_uuid = str(uuid.uuid4())
+    file_name = f"{file_uuid}.json"
+
+    file_path = '/downloads/' + file_name
+
+    with open(file_path, 'w') as file:
+        json.dump(json_data, file, indent=4, ensure_ascii=False)
