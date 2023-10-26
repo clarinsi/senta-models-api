@@ -135,6 +135,9 @@ def df2json(nlp, sample_df, textbook, general):
      simplified_general_words,
      simplified_textbook_words) = add_stats(nlp, simplified_text, textbook, general)
 
+    is_sentence_simplified = [not v for v in sample_df['is_simple_detected'].tolist()]
+    is_sentence_simplified_sum = int(sum(is_sentence_simplified))
+
     return {
         'complex_text': complex_text,
         'complex_sentences': sample_df['complex_sent'].tolist(),
@@ -156,8 +159,8 @@ def df2json(nlp, sample_df, textbook, general):
         'simplified_general_words': simplified_general_words,
         'simplified_textbook_words': simplified_textbook_words,
 
-        'is_sentence_simplified': sample_df['is_simple_detected'].tolist(),
-        'is_sentence_simplified_num': int(sample_df['is_simple_detected'].sum())
+        'is_sentence_simplified': is_sentence_simplified,
+        'is_sentence_simplified_num': is_sentence_simplified_sum
     }
 
 
